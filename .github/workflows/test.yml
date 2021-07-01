@@ -96,7 +96,7 @@ jobs:
         Get-Package -Name Docker -ProviderName DockerMsftProvider
         Find-Package -Name Docker -ProviderName DockerMsftProvider
         Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
-        New-Item -Path C:\ProgramData\docker\config -Name "daemon.json" -ItemType "file" -Value "{\"experimental\": \"enabled\"}"
+        New-Item -Path C:\ProgramData\docker\config -Name "daemon.json" -ItemType "file" -Value "{"experimental": "enabled"}"
         Start-Service Docker
 
     - name: Add hosts entry

@@ -96,6 +96,7 @@ jobs:
         Get-Package -Name Docker -ProviderName DockerMsftProvider
         Find-Package -Name Docker -ProviderName DockerMsftProvider
         Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+        New-Item -Path C:\ProgramData\docker\config -Name "daemon.json" -ItemType "file" -Value "{\"experimental\": \"enabled\"}"
         Start-Service Docker
 
     - name: Add hosts entry
@@ -134,7 +135,9 @@ jobs:
 
     steps:
     - name: Install Docker
-      run: brew install --cask docker
+      run: |
+        brew install --cask docker
+        docker version
 
     - name: Set up Go
       uses: actions/setup-go@v2.1.3

@@ -45,11 +45,12 @@ jobs:
   test:
     name: Matrix Test
     # needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
         terraform:
           - '0.12.30'
           # - '0.13.6'

@@ -91,6 +91,13 @@ jobs:
           # - '0.14.5'
 
     steps:
+    - name: Update Docker
+      run: |
+        Get-Package -Name Docker -ProviderName DockerMsftProvider
+        Find-Package -Name Docker -ProviderName DockerMsftProvider
+        Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+        Start-Service Docker
+
     - name: Add hosts entry
       run: Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tns.example.com" -Force
 
@@ -127,7 +134,7 @@ jobs:
 
     steps:
     - name: Install Docker
-      run: brew cask install docker
+      run: brew install --cask docker
 
     - name: Set up Go
       uses: actions/setup-go@v2.1.3
